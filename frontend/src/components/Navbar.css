@@ -1,9 +1,10 @@
 .navbar {
-  background-color: var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
 .navbar-container {
@@ -36,12 +37,30 @@
 .navbar-menu a {
   color: white;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  position: relative;
 }
 
 .navbar-menu a:hover:not(.btn) {
   color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.navbar-menu a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.navbar-menu a:not(.btn):hover::after {
+  width: 100%;
 }
 
 .navbar-menu .btn {
