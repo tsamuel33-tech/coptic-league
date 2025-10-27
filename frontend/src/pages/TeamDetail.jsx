@@ -75,7 +75,7 @@ const TeamDetail = () => {
                   <td>{player.player?.firstName} {player.player?.lastName}</td>
                   <td>{player.position || '-'}</td>
                   <td>
-                    <span className={\`badge badge-\${player.status === 'active' ? 'success' : 'warning'}\`}>
+                    <span className={`badge badge-${player.status === 'active' ? 'success' : 'warning'}`}>
                       {player.status}
                     </span>
                   </td>
