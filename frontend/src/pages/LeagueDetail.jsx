@@ -40,7 +40,7 @@ const LeagueDetail = () => {
           <p><strong>Registration Deadline:</strong> {format(new Date(league.registrationDeadline), 'MMM dd, yyyy')}</p>
           <p><strong>Registration Fee:</strong> ${league.registrationFee}</p>
           <p><strong>Max Teams:</strong> {league.maxTeams}</p>
-          <p><strong>Status:</strong> <span className={\`badge badge-\${league.status === 'open' ? 'success' : 'primary'}\`}>
+          <p><strong>Status:</strong> <span className={`badge badge-${league.status === 'open' ? 'success' : 'primary'}`}>
             {league.status}
           </span></p>
         </div>
@@ -54,7 +54,7 @@ const LeagueDetail = () => {
               <div key={team._id} style={{ padding: '1rem', background: 'var(--bg-secondary)', borderRadius: '8px' }}>
                 <h3>{team.name}</h3>
                 <p>Record: {team.wins}-{team.losses}</p>
-                <Link to={\`/teams/\${team._id}\`} className="btn btn-primary" style={{ marginTop: '0.5rem' }}>
+                <Link to={`/teams/${team._id}`} className="btn btn-primary" style={{ marginTop: '0.5rem' }}>
                   View Team
                 </Link>
               </div>

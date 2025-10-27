@@ -30,7 +30,7 @@ const Profile = () => {
             <p><strong>Jersey Number:</strong> {user.playerProfile.jerseyNumber || 'Not set'}</p>
             <p><strong>Position:</strong> {user.playerProfile.position || 'Not set'}</p>
             <p><strong>Height:</strong> {user.playerProfile.height || 'Not set'}</p>
-            <p><strong>Weight:</strong> {user.playerProfile.weight ? \`\${user.playerProfile.weight} lbs\` : 'Not set'}</p>
+            <p><strong>Weight:</strong> {user.playerProfile.weight ? `${user.playerProfile.weight} lbs` : 'Not set'}</p>
           </div>
         </div>
       )}

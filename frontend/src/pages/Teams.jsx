@@ -40,7 +40,7 @@ const Teams = () => {
               {team.coach && <p><strong>Coach:</strong> {team.coach.firstName} {team.coach.lastName}</p>}
               <p><strong>Record:</strong> {team.wins}-{team.losses}</p>
               <p><strong>Players:</strong> {team.players?.length || 0}/{team.maxPlayers}</p>
-              <Link to={\`/teams/\${team._id}\`} className="btn btn-primary" style={{ marginTop: '1rem' }}>
+              <Link to={`/teams/${team._id}`} className="btn btn-primary" style={{ marginTop: '1rem' }}>
                 View Team
               </Link>
             </div>

@@ -54,13 +54,13 @@ const Schedule = () => {
                   <td>{game.awayTeam?.name || 'TBD'}</td>
                   <td>{game.venue}</td>
                   <td>
-                    <span className={\`badge badge-\${game.status === 'completed' ? 'success' : game.status === 'in-progress' ? 'warning' : 'primary'}\`}>
+                    <span className={`badge badge-${game.status === 'completed' ? 'success' : game.status === 'in-progress' ? 'warning' : 'primary'}`}>
                       {game.status}
                     </span>
                   </td>
                   <td>
                     {game.status === 'completed' || game.status === 'in-progress'
-                      ? \`\${game.homeScore} - \${game.awayScore}\`
+                      ? `${game.homeScore} - ${game.awayScore}`
                       : '-'}
                   </td>
                 </tr>

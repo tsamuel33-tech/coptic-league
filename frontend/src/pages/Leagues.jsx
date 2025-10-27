@@ -38,10 +38,10 @@ const Leagues = () => {
               <h3>{league.name}</h3>
               <p><strong>Division:</strong> {league.division}</p>
               <p><strong>Season:</strong> {league.season}</p>
-              <p><strong>Status:</strong> <span className={\`badge badge-\${league.status === 'open' ? 'success' : 'primary'}\`}>
+              <p><strong>Status:</strong> <span className={`badge badge-${league.status === 'open' ? 'success' : 'primary'}`}>
                 {league.status}
               </span></p>
-              <Link to={\`/leagues/\${league._id}\`} className="btn btn-primary" style={{ marginTop: '1rem' }}>
+              <Link to={`/leagues/${league._id}`} className="btn btn-primary" style={{ marginTop: '1rem' }}>
                 View Details
               </Link>
             </div>
