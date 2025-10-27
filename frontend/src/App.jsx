@@ -13,6 +13,10 @@ import Schedule from './pages/Schedule';
 import RegistrationForm from './pages/RegistrationForm';
 import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel';
+import LeagueManagement from './pages/admin/LeagueManagement';
+import TeamManagement from './pages/admin/TeamManagement';
+import GameManagement from './pages/admin/GameManagement';
+import RegistrationManagement from './pages/admin/RegistrationManagement';
 import './App.css';
 
 // Protected Route Component
@@ -80,6 +84,38 @@ function AppContent() {
               element={
                 <ProtectedRoute requireAdmin={true}>
                   <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/leagues"
+              element={
+                <ProtectedRoute requireAdmin={true}>
+                  <LeagueManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/teams"
+              element={
+                <ProtectedRoute requireAdmin={true}>
+                  <TeamManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/games"
+              element={
+                <ProtectedRoute requireAdmin={true}>
+                  <GameManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/registrations"
+              element={
+                <ProtectedRoute requireAdmin={true}>
+                  <RegistrationManagement />
                 </ProtectedRoute>
               }
             />

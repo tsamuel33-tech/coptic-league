@@ -1,49 +1,67 @@
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
 const AdminPanel = () => {
+  const { user } = useAuth();
+
+  if (user?.role !== 'admin') {
+    return (
+      <div className="card">
+        <h1>Access Denied</h1>
+        <p>You do not have permission to access the admin panel.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Admin Panel</h1>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+        Welcome, {user?.firstName}! Manage your Coptic League from here.
+      </p>
 
       <div className="grid grid-2" style={{ marginTop: '2rem' }}>
         <div className="card">
-          <h2 className="card-title">Manage Leagues</h2>
+          <h2 className="card-title">🏆 Manage Leagues</h2>
           <p>Create, edit, and manage leagues and divisions</p>
-          <button className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          <Link to="/admin/leagues" className="btn btn-primary" style={{ marginTop: '1rem' }}>
             Manage Leagues
-          </button>
+          </Link>
         </div>
 
         <div className="card">
-          <h2 className="card-title">Manage Teams</h2>
+          <h2 className="card-title">👥 Manage Teams</h2>
           <p>Create teams and assign players</p>
-          <button className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          <Link to="/admin/teams" className="btn btn-primary" style={{ marginTop: '1rem' }}>
             Manage Teams
-          </button>
+          </Link>
         </div>
 
         <div className="card">
-          <h2 className="card-title">Schedule Games</h2>
+          <h2 className="card-title">📅 Schedule Games</h2>
           <p>Create and update game schedules</p>
-          <button className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          <Link to="/admin/games" className="btn btn-primary" style={{ marginTop: '1rem' }}>
             Schedule Games
-          </button>
+          </Link>
         </div>
 
         <div className="card">
-          <h2 className="card-title">View Registrations</h2>
+          <h2 className="card-title">📋 View Registrations</h2>
           <p>Review and approve league registrations</p>
-          <button className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          <Link to="/admin/registrations" className="btn btn-primary" style={{ marginTop: '1rem' }}>
             View Registrations
-          </button>
+          </Link>
         </div>
       </div>
 
-      <div className="card" style={{ marginTop: '2rem' }}>
-        <h2 className="card-title">Admin Note</h2>
-        <p>
-          This is a simplified admin panel. Full administrative features would include
-          creating/editing leagues, teams, games, managing registrations, payment processing,
-          and generating reports.
-        </p>
+      <div className="card" style={{ marginTop: '2rem', background: 'var(--bg-secondary)' }}>
+        <h2 className="card-title">💡 Quick Tips</h2>
+        <ul style={{ marginTop: '1rem', marginLeft: '1.5rem', lineHeight: '1.8' }}>
+          <li>Create leagues first before teams can register</li>
+          <li>Teams must be created before scheduling games</li>
+          <li>You can import schedules from Excel (see backend/scripts/README.md)</li>
+          <li>Monitor registrations to track league participation</li>
+        </ul>
       </div>
     </div>
   );
