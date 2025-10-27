@@ -52,6 +52,14 @@ const AdminPanel = () => {
             View Registrations
           </Link>
         </div>
+
+        <div className="card">
+          <h2 className="card-title">📊 Reports & Data Export</h2>
+          <p>Download registration data and view analytics</p>
+          <Link to="/admin/reports" className="btn btn-primary" style={{ marginTop: '1rem' }}>
+            View Reports
+          </Link>
+        </div>
       </div>
 
       <div className="card" style={{ marginTop: '2rem', background: 'var(--bg-secondary)' }}>

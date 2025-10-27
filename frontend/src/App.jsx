@@ -17,6 +17,7 @@ import LeagueManagement from './pages/admin/LeagueManagement';
 import TeamManagement from './pages/admin/TeamManagement';
 import GameManagement from './pages/admin/GameManagement';
 import RegistrationManagement from './pages/admin/RegistrationManagement';
+import Reports from './pages/admin/Reports';
 import './App.css';
 
 // Protected Route Component
@@ -116,6 +117,14 @@ function AppContent() {
               element={
                 <ProtectedRoute requireAdmin={true}>
                   <RegistrationManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/reports"
+              element={
+                <ProtectedRoute requireAdmin={true}>
+                  <Reports />
                 </ProtectedRoute>
               }
             />

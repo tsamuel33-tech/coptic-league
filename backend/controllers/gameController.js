@@ -124,6 +124,10 @@ export const updateGame = async (req, res) => {
       return res.status(404).json({ message: 'Game not found' });
     }
 
+    const wasCompleted = game.status === 'completed';
+    const oldHomeScore = game.homeScore;
+    const oldAwayScore = game.awayScore;
+
     // Update fields
     Object.keys(req.body).forEach(key => {
       if (req.body[key] !== undefined) {
@@ -133,17 +137,34 @@ export const updateGame = async (req, res) => {
 
     await game.save();
 
-    // Update team records if game is completed
-    if (req.body.status === 'completed' && game.homeScore !== game.awayScore) {
+    // Update team records if game status changed to completed or scores changed
+    const nowCompleted = game.status === 'completed';
+    const scoresChanged = (oldHomeScore !== game.homeScore || oldAwayScore !== game.awayScore);
+
+    if (nowCompleted && game.homeScore !== undefined && game.awayScore !== undefined) {
       const homeTeam = await Team.findById(game.homeTeam);
       const awayTeam = await Team.findById(game.awayTeam);
 
-      if (game.homeScore > game.awayScore) {
-        homeTeam.wins += 1;
-        awayTeam.losses += 1;
-      } else {
-        awayTeam.wins += 1;
-        homeTeam.losses += 1;
+      // If was already completed, reverse old result
+      if (wasCompleted && scoresChanged && oldHomeScore !== undefined && oldAwayScore !== undefined) {
+        if (oldHomeScore > oldAwayScore) {
+          homeTeam.wins = Math.max(0, homeTeam.wins - 1);
+          awayTeam.losses = Math.max(0, awayTeam.losses - 1);
+        } else if (oldAwayScore > oldHomeScore) {
+          awayTeam.wins = Math.max(0, awayTeam.wins - 1);
+          homeTeam.losses = Math.max(0, homeTeam.losses - 1);
+        }
+      }
+
+      // Apply new result
+      if (!wasCompleted || scoresChanged) {
+        if (game.homeScore > game.awayScore) {
+          homeTeam.wins += 1;
+          awayTeam.losses += 1;
+        } else if (game.awayScore > game.homeScore) {
+          awayTeam.wins += 1;
+          homeTeam.losses += 1;
+        }
       }
 
       await homeTeam.save();
